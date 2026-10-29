@@ -1,0 +1,19 @@
+# 비밀값·로컬 설정
+.env
+config.yaml
+
+# 실행 중 생기는 것
+downloads/
+.finder/
+seen.sqlite
+logs/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.venv/
+venv/

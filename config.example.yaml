@@ -1,0 +1,25 @@
+# topic-file-finder 설정 — 이 파일을 config.yaml 로 복사해서 쓰세요. (없으면 아래 기본값으로 동작)
+contact_email: you@example.com   # OpenAlex polite pool · User-Agent 연락처 (실제 메일로 바꾸면 한도가 넉넉해짐)
+download_dir: downloads          # 파일 저장 루트: downloads/<주제>/<YYYY-MM-DD>/
+data_dir: .finder                # 마지막 검색 결과 캐시 (download --ids 가 번호로 고를 때 사용)
+topics_file: topics.yaml         # 저장된 주제
+seen_db: seen.sqlite             # "이미 본 자료" 기록
+log_file: logs/finder.log
+
+default_sources: [arxiv, openalex, semantic_scholar, web]
+default_limit: 30                # 최대 결과 수 (전체)
+# per_source_limit: 30           # 출처별 요청 건수 (기본: default_limit 과 같음)
+
+max_file_mb: 100                 # 파일 크기 상한
+concurrency: 3                   # 동시 다운로드 수
+timeout: 60                      # 초
+retries: 2                       # 429/5xx/네트워크 오류 재시도 횟수 (지수 백오프)
+
+rate_limits:                     # 출처별 초당 요청 수
+  arxiv: 0.34                    # arXiv 권장: 3초에 1회
+  openalex: 10
+  semantic_scholar: 1
+  web: 1
+
+web_region: auto                 # auto(한글이면 kr-kr, 아니면 wt-wt) | kr-kr | wt-wt | us-en ...
+claude_model: claude-haiku-5-5   # ANTHROPIC_API_KEY 가 있을 때 키워드 생성·한국어 요약에 쓰는 모델
